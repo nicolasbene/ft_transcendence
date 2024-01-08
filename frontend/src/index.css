@@ -9,7 +9,8 @@
 } 
 
 body {
-  background: black
+  background: black;
+  color: #fff;
 }
 
 code {
