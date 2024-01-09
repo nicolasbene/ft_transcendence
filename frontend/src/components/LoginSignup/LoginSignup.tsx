@@ -11,51 +11,100 @@ const LoginSignup = () => {
 	const navigate = useNavigate();
 	const [formData, setFormData] = useState({ name: '', email: '', password: '' });
 
-	const handleChange = (e) => {
-		const newFormData = ({ ...formData, [e.target.name]: e.target.value });
-		setFormData(newFormData)
-		console.log(newFormData)
-	};
+	// const handleChange = (e) => {
+	// 	const newFormData = ({ ...formData, [e.target.name]: e.target.value });
+	// 	setFormData(newFormData)
+	// 	console.log(newFormData)
+	// };
 
-	const handleSignUp = async (e) => {
-		e.preventDefault();
-		try {
-			const response = await fetch('http://localhost:8080/auth/signup', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(formData),
-		});
-		if (!response.ok) {
-			throw new Error('Signup failed');
-		}
-		const data = await response.json();
-		navigate('/home');
-		console.log('Signup successful:', data); }
-	catch (error) {
-		console.error('Error during signup:', error); }
-	};
+	// const handleSignUp = async (e) => {
+	// 	e.preventDefault();
+	// 	try {
+	// 		const response = await fetch('http://localhost:8080/auth/signup', {
+	// 		method: 'POST',
+	// 		headers: {
+	// 			'Content-Type': 'application/json',
+	// 		},
+	// 		body: JSON.stringify(formData),
+	// 	});
+	// 	if (!response.ok) {
+	// 		throw new Error('Signup failed');
+	// 	}
+	// 	const data = await response.json();
+	// 	navigate('/home');
+	// 	console.log('Signup successful:', data); }
+	// catch (error) {
+	// 	console.error('Error during signup:', error); }
+	// };
 
-	const handleSignIn = async (e) => {
-		e.preventDefault();
-		try {
-			const response = await fetch('http://localhost:8080/auth/signin', {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(formData),
-		});
-		if (!response.ok) {
-			throw new Error('Signin failed');
-		}
-		const data = await response.json();
-		navigate('/home');
-		console.log('Signin successful:', data); }
-	catch (error) {
-		console.error('Error during signin:', error); }
-	};
+	// const handleSignIn = async (e) => {
+	// 	e.preventDefault();
+	// 	try {
+	// 		const response = await fetch('http://localhost:8080/auth/signin', {
+	// 		method: 'POST',
+	// 		headers: {
+	// 			'Content-Type': 'application/json',
+	// 		},
+	// 		body: JSON.stringify(formData),
+	// 	});
+	// 	if (!response.ok) {
+	// 		throw new Error('Signin failed');
+	// 	}
+	// 	const data = await response.json();
+	// 	navigate('/home');
+	// 	console.log('Signin successful:', data); }
+	// catch (error) {
+	// 	console.error('Error during signin:', error); }
+	// };
+
+
+const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+	const newFormData = { ...formData, [e.target.name]: e.target.value };
+	setFormData(newFormData);
+	console.log(newFormData);
+  };
+  
+  const handleSignUp = async (e: React.MouseEvent<HTMLDivElement>) => {
+	e.preventDefault();
+	try {
+	  const response = await fetch('http://localhost:8080/auth/signup', {
+		method: 'POST',
+		headers: {
+		  'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(formData),
+	  });
+	  if (!response.ok) {
+		throw new Error('Signup failed');
+	  }
+	  const data = await response.json();
+	  navigate('/home');
+	  console.log('Signup successful:', data);
+	} catch (error) {
+	  console.error('Error during signup:', error);
+	}
+  };
+  
+  const handleSignIn = async (e: React.MouseEvent<HTMLDivElement>) => {
+	e.preventDefault();
+	try {
+	  const response = await fetch('http://localhost:8080/auth/signin', {
+		method: 'POST',
+		headers: {
+		  'Content-Type': 'application/json',
+		},
+		body: JSON.stringify(formData),
+	  });
+	  if (!response.ok) {
+		throw new Error('Signin failed');
+	  }
+	  const data = await response.json();
+	  navigate('/home');
+	  console.log('Signin successful:', data);
+	} catch (error) {
+	  console.error('Error during signin:', error);
+	}
+  };
 
 	const[action, setAction] = useState("Sign Up");
 
